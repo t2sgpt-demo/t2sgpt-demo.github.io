@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description"
+        content="T2S-GPT: Dynamic Vector Quantization for Autoregressive Sign Language Production from Text">
+    <meta name="keywords" content="SLP, Video Synthesis">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>T2S-GPT: Dynamic Vector Quantization for Autoregressive Sign Language Production from Text</title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'G-PYVRSFMDRL');
+    </script> -->
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
+</head>
+
+<body>
+
+
+
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container">
+                <div class="columns is-centered">
+                    <div class="column has-text-centered">
+                        <h1 class="title is-2 publication-title">T2S-GPT: Dynamic Vector Quantization for Autoregressive
+                            Sign Language Production from Text</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="hero is-light is-small">
+        <div class="hero-body">
+            <div class="container">
+                <div id="results-carousel" class="carousel results-carousel">
+                    <div class="item item-face">
+                        <video poster="" id="face" autoplay controls muted loop height="100%">
+                            <source src="video/06September_2010_Monday_tagesschau-1147.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="item item-sky">
+                        <video poster="" id="sky" autoplay controls muted loop height="100%">
+                            <source src="video/01July_2011_Friday_tagesschau-2766.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="item item-dog">
+                        <video poster="" id="dog" autoplay controls muted loop height="100%">
+                            <source src="video/25June_2010_Friday_tagesschau-3884.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="item item-ffhq">
+                        <video poster="" id="ffhq" autoplay controls muted loop height="100%">
+                            <source src="video/01June_2010_Tuesday_tagesschau-5002.mp4">
+                        </video>
+                    </div>
+                    <!-- <div class="item item-anime">
+                        <video poster="" id="anime" autoplay controls muted loop height="100%">
+                            <source src="videos/rec_wer_0.33_ori_wer_0.33_SCHOEN_ABEND_WUENSCHEN.mp4" type="video/mp4">
+                        </video>
+                    </div> -->
+                    <!-- <div class="item item-church">
+                        <video poster="" id="church" autoplay controls muted loop height="100%">
+                            <source src="videos/demo2.mp4" type="video/mp4">
+                        </video>
+                    </div> -->
+
+
+                </div>
+            </div>
+        </div>
+        <div align="center">
+            The left is the original video, the right is produced by our T2S-GPT.
+        </div>
+    </section>
+
+
+    <section class="section">
+        <div class="container">
+
+            <!-- Abstract. -->
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-two-thirds">
+                    <h2 class="title is-2">Abstract</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                            In this work, we propose a two-stage sign language production (SLP) paradigm that first
+                            encodes sign language sequences into discrete codes and then autoregressively generates sign
+                            language from text based on the learned codebook. However, existing vector quantization (VQ)
+                            methods are fixed-length encodings, overlooking the uneven information density in sign
+                            language, which leads to under-encoding of important regions and over-encoding of
+                            unimportant regions. To address this issue, we propose a novel dynamic vector quantization
+                            (DVA-VAE) model that can dynamically adjust the encoding length based on the information
+                            density in sign language to achieve accurate and compact encoding. Then, a GPT-like model
+                            learns to generate code sequences and their corresponding durations from spoken language
+                            text. Extensive experiments conducted on the PHOENIX14T dataset demonstrate the
+                            effectiveness of our proposed method. To promote sign language research, we propose a new
+                            large German sign language dataset, PHOENIX-News, which contains 486 hours of sign language
+                            videos, audio, and transcription texts. Experimental analysis on PHOENIX-News shows that the
+                            performance of our model can be further improved by increasing the size of the training
+                            data.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/ Abstract. -->
+
+        <!-- Paper video. -->
+        <!-- <div class="columns is-centered has-text-centered">
+            <div class="column is-two-thirds">
+                <h2 class="title is-2">Video</h2>
+                <div class="publication-video">
+                    <iframe src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div> -->
+        <!--/ Paper video. -->
+    </section>
+
+
+    <section class="section">
+        <div class="container">
+
+            <div class="columns is-centered">
+                <div class="column">
+                    <div class="content">
+                        <p>
+                            weak to moderate in the north also fresh wind from the east to southeast on the North Sea
+                            and on the mountains it is strong with stormy gusts.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="content">
+                        <p>
+                            On the day it was thirteen degrees with constant rain and twenty-one degrees on the Upper
+                            Rhine.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="columns is-centered">
+                <div class="column">
+                    <div class="content">
+                        <video id="1" autoplay controls muted loop height="100%">
+                            <source src="video/06September_2010_Monday_tagesschau-1147.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="content">
+                        <video id="2" autoplay controls muted loop height="100%">
+                            <source src="video/01July_2011_Friday_tagesschau-2766.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+
+            <div class="columns is-centered">
+                <div class="column">
+                    <div class="content">
+                        <p>
+                            and now the weather forecast for tomorrow, Wednesday the second of June.
+                        </p>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="content">
+                        <p>
+                            and now the weather forecast for tomorrow, Friday the fifteenth of October.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="columns is-centered">
+                <div class="column">
+                    <div class="content">
+                        <video id="3" autoplay controls muted loop height="100%">
+                            <source src="video/01June_2010_Tuesday_tagesschau-5002.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="content">
+                        <video id="4" autoplay controls muted loop height="100%">
+                            <source src="video/14October_2010_Thursday_tagesschau-287.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+
+            <div class="columns is-centered">
+                <div class="column">
+                    <div class="content">
+                        <p>
+                            In Lusatia tonight until fifteen in Sauerland it was only a cool six degrees.
+                        </p>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="content">
+                        <p>
+                            on the day twelve degrees on the Baltic Sea and up to twenty degrees in Lower Bavaria.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="columns is-centered">
+                <div class="column">
+                    <div class="content">
+                        <video id="5" autoplay controls muted loop height="100%">
+                            <source src="video/25June_2010_Friday_tagesschau-3884.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="content">
+                        <video id="6" autoplay controls muted loop height="100%">
+                            <source src="video/01May_2010_Saturday_tagesschau-7194.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+
+            <div class="columns is-centered">
+                <div class="column">
+                    <div class="content">
+                        <p>
+                            friendly weather in the south.
+                        </p>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="content">
+                        <p>
+                            In a strip in between it is still friendly for a long time.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="columns is-centered">
+                <div class="column">
+                    <div class="content">
+                        <video id="7" autoplay controls muted loop height="100%">
+                            <source src="video/01October_2009_Thursday_tagesschau-421.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="content">
+                        <video id="8" autoplay controls muted loop height="100%">
+                            <source src="video/28September_2012_Friday_tagesschau-917.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+
+            <div class="columns is-centered">
+                <div class="column">
+                    <div class="content">
+                        <p>
+                            and now the weather forecast for tomorrow, Saturday, October 2nd.
+                        </p>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="content">
+                        <p>
+                            It remains milder under the rain clouds in the east at fifteen to sixteen degrees.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="columns is-centered">
+                <div class="column">
+                    <div class="content">
+                        <video id="9" autoplay controls muted loop height="100%">
+                            <source src="video/01October_2010_Friday_tagesschau-2691.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="content">
+                        <video id="10" autoplay controls muted loop height="100%">
+                            <source src="video/02August_2010_Monday_heute-1243.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+
+            <div class="columns is-centered">
+                <div class="column">
+                    <div class="content">
+                        <p>
+                            There are snow showers especially near the coast.
+                        </p>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="content">
+                        <p>
+                            In the Bavarian Forest tonight it was minus five degrees, in the Emsland it was plus three degrees.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="columns is-centered">
+                <div class="column">
+                    <div class="content">
+                        <video id="11" autoplay controls muted loop height="100%">
+                            <source src="video/02December_2010_Thursday_tagesschau-3637.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="content">
+                        <video id="11" autoplay controls muted loop height="100%">
+                            <source src="video/03February_2011_Thursday_tagesschau-938.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+</body>
+
+</html>
